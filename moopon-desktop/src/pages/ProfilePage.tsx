@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { User, Eye, CheckCircle, Pause, XCircle, Clock, Star, LogOut } from 'lucide-react';
+import { User, Eye, CheckCircle, Pause, XCircle, Clock, Star, LogOut, Globe } from 'lucide-react';
 import { ProfileSkeleton } from '../components/Skeleton';
 import { getUserProfile, logout } from '../services/malApi';
+import { useI18n, useLanguage } from '../i18n';
 import type { MalUser } from '../services/malApi';
 
 interface ProfilePageProps {
@@ -12,6 +13,8 @@ interface ProfilePageProps {
 export default function ProfilePage({ onLogout }: ProfilePageProps) {
     const [user, setUser] = useState<MalUser | null>(null);
     const [loading, setLoading] = useState(true);
+    const { t } = useI18n();
+    const { language, setLanguage } = useLanguage();
 
     useEffect(() => {
         async function fetchProfile() {
@@ -32,6 +35,10 @@ export default function ProfilePage({ onLogout }: ProfilePageProps) {
         onLogout();
     };
 
+    const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setLanguage(e.target.value as 'en' | 'tr');
+    };
+
     if (loading) {
         return <ProfileSkeleton />;
     }
@@ -45,8 +52,8 @@ export default function ProfilePage({ onLogout }: ProfilePageProps) {
                 transition={{ duration: 0.3 }}
             >
                 <User />
-                <h3>Profil yüklenemedi</h3>
-                <p>Lütfen tekrar giriş yapın</p>
+                <h3>{t.profile.loadFailed}</h3>
+                <p>{t.profile.pleaseLogin}</p>
             </motion.div>
         );
     }
@@ -54,11 +61,11 @@ export default function ProfilePage({ onLogout }: ProfilePageProps) {
     const stats = user.anime_statistics;
 
     const statItems = stats ? [
-        { label: 'İzleniyor', value: stats.num_items_watching, icon: Eye, color: '#a855f7' },
-        { label: 'Tamamlandı', value: stats.num_items_completed, icon: CheckCircle, color: '#22c55e' },
-        { label: 'Beklemede', value: stats.num_items_on_hold, icon: Pause, color: '#eab308' },
-        { label: 'Bırakıldı', value: stats.num_items_dropped, icon: XCircle, color: '#ef4444' },
-        { label: 'İzlenecek', value: stats.num_items_plan_to_watch, icon: Clock, color: '#3b82f6' },
+        { label: t.profile.watching, value: stats.num_items_watching, icon: Eye, color: '#a855f7' },
+        { label: t.profile.completed, value: stats.num_items_completed, icon: CheckCircle, color: '#22c55e' },
+        { label: t.profile.onHold, value: stats.num_items_on_hold, icon: Pause, color: '#eab308' },
+        { label: t.profile.dropped, value: stats.num_items_dropped, icon: XCircle, color: '#ef4444' },
+        { label: t.profile.planToWatch, value: stats.num_items_plan_to_watch, icon: Clock, color: '#3b82f6' },
     ] : [];
 
     return (
@@ -113,19 +120,37 @@ export default function ProfilePage({ onLogout }: ProfilePageProps) {
                         )}
                     </motion.div>
                 </div>
-                <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                        <h1 style={{
-                            fontSize: '28px',
-                            fontWeight: 800,
-                            marginBottom: '4px',
-                        }}>
-                            {user.name}
-                        </h1>
+                <div style={{ flex: 1 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <div>
+                            <h1 style={{
+                                fontSize: '28px',
+                                fontWeight: 800,
+                                marginBottom: '4px',
+                            }}>
+                                {user.name}
+                            </h1>
+                            <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
+                                MyAnimeList
+                            </p>
+                        </div>
+                        <motion.div
+                            className="language-selector"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.3 }}
+                        >
+                            <Globe size={16} style={{ color: 'var(--text-secondary)' }} />
+                            <select
+                                value={language}
+                                onChange={handleLanguageChange}
+                                className="language-select"
+                            >
+                                <option value="en">{t.profile.english}</option>
+                                <option value="tr">{t.profile.turkish}</option>
+                            </select>
+                        </motion.div>
                     </div>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
-                        MyAnimeList Hesabı
-                    </p>
                 </div>
             </motion.div>
 
@@ -151,7 +176,7 @@ export default function ProfilePage({ onLogout }: ProfilePageProps) {
                             <div className="profile-stat-value" style={{ color: '#fbbf24' }}>
                                 <Star size={18} fill="#fbbf24" /> {stats.mean_score.toFixed(1)}
                             </div>
-                            <div className="profile-stat-label">Ortalama Puan</div>
+                            <div className="profile-stat-label">{t.profile.meanScore}</div>
                         </motion.div>
                         <motion.div
                             className="profile-stat-card"
@@ -159,7 +184,7 @@ export default function ProfilePage({ onLogout }: ProfilePageProps) {
                             whileHover={{ borderColor: 'rgba(168, 85, 247, 0.4)', y: -2 }}
                         >
                             <div className="profile-stat-value">{stats.num_items}</div>
-                            <div className="profile-stat-label">Toplam Anime</div>
+                            <div className="profile-stat-label">{t.profile.totalAnime}</div>
                         </motion.div>
                     </motion.div>
 
@@ -205,7 +230,7 @@ export default function ProfilePage({ onLogout }: ProfilePageProps) {
                     whileHover={{ scale: 1.04, borderColor: 'rgba(239,68,68,0.5)', boxShadow: '0 0 15px rgba(239,68,68,0.15)' }}
                     whileTap={{ scale: 0.96 }}
                 >
-                    <LogOut size={16} /> Çıkış Yap
+                    <LogOut size={16} /> {t.profile.logout}
                 </motion.button>
             </motion.div>
         </motion.div>

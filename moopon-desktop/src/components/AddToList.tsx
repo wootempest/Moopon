@@ -2,14 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BookmarkPlus, Eye, CheckCircle, Pause, XCircle, Clock, Check, Star } from 'lucide-react';
 import { updateAnimeStatus } from '../services/malApi';
-
-const STATUSES = [
-    { value: 'watching', label: 'İzleniyor', icon: Eye, color: '#a855f7' },
-    { value: 'completed', label: 'Tamamlandı', icon: CheckCircle, color: '#22c55e' },
-    { value: 'on_hold', label: 'Beklemede', icon: Pause, color: '#eab308' },
-    { value: 'dropped', label: 'Bırakıldı', icon: XCircle, color: '#ef4444' },
-    { value: 'plan_to_watch', label: 'İzlenecek', icon: Clock, color: '#3b82f6' },
-];
+import { useI18n } from '../i18n';
 
 interface AddToListProps {
     animeId: number;
@@ -25,6 +18,15 @@ export default function AddToList({ animeId, currentStatus, currentScore, varian
     const [hoverScore, setHoverScore] = useState(0);
     const [saving, setSaving] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
+    const { t } = useI18n();
+
+    const STATUSES = [
+        { value: 'watching', label: t.status.watching, icon: Eye, color: '#a855f7' },
+        { value: 'completed', label: t.status.completed, icon: CheckCircle, color: '#22c55e' },
+        { value: 'on_hold', label: t.status.on_hold, icon: Pause, color: '#eab308' },
+        { value: 'dropped', label: t.status.dropped, icon: XCircle, color: '#ef4444' },
+        { value: 'plan_to_watch', label: t.status.plan_to_watch, icon: Clock, color: '#3b82f6' },
+    ];
 
     useEffect(() => {
         function handleClick(e: MouseEvent) {
@@ -111,7 +113,7 @@ export default function AddToList({ animeId, currentStatus, currentScore, varian
                 ) : (
                     <>
                         <BookmarkPlus size={16} />
-                        {saving ? 'Kaydediliyor...' : 'Listeye Ekle'}
+                        {saving ? 'Saving...' : t.detail.addToList}
                     </>
                 )}
             </button>
@@ -125,7 +127,6 @@ export default function AddToList({ animeId, currentStatus, currentScore, varian
                         transition={{ duration: 0.15 }}
                         style={dropdownStyle}
                     >
-                        {/* Status Seçimi */}
                         <div style={{
                             padding: '4px 10px 6px',
                             fontSize: '10px',
@@ -133,7 +134,7 @@ export default function AddToList({ animeId, currentStatus, currentScore, varian
                             color: 'var(--text-muted)',
                             textTransform: 'uppercase',
                             letterSpacing: '1px',
-                        }}>Durum</div>
+                        }}>Status</div>
 
                         {STATUSES.map(status => (
                             <button
@@ -161,7 +162,6 @@ export default function AddToList({ animeId, currentStatus, currentScore, varian
                             </button>
                         ))}
 
-                        {/* Puan Bölümü */}
                         <div style={{
                             borderTop: '1px solid var(--border-subtle)',
                             margin: '6px 0',
@@ -174,7 +174,7 @@ export default function AddToList({ animeId, currentStatus, currentScore, varian
                             color: 'var(--text-muted)',
                             textTransform: 'uppercase',
                             letterSpacing: '1px',
-                        }}>Puan</div>
+                        }}>Score</div>
 
                         <div style={{
                             display: 'flex',

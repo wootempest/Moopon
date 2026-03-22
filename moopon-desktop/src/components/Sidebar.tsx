@@ -1,42 +1,45 @@
 import { motion } from 'framer-motion';
 import { Home, Library, Calendar, Search, Star, User, LogOut, Sparkles } from 'lucide-react';
+import { useI18n } from '../i18n';
 
 interface SidebarProps {
     activePage: string;
     onNavigate: (page: string) => void;
 }
 
-const menuItems = [
-    {
-        section: 'Keşfet', items: [
-            { id: 'home', label: 'Ana Sayfa', icon: Home },
-            { id: 'search', label: 'Ara', icon: Search },
-            { id: 'seasonal', label: 'Sezonluk', icon: Calendar },
-            { id: 'top', label: 'En İyiler', icon: Star },
-        ]
-    },
-    {
-        section: 'Kütüphane', items: [
-            { id: 'mylist', label: 'Listem', icon: Library },
-            { id: 'profile', label: 'Profil', icon: User },
-            { id: 'logout', label: 'Çıkış Yap', icon: LogOut },
-        ]
-    },
-];
-
-const sidebarVariants = {
-    hidden: {},
-    visible: {
-        transition: { staggerChildren: 0.05, delayChildren: 0.15 }
-    }
-};
-
-const itemVariants = {
-    hidden: { opacity: 0, x: -12 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } }
-};
-
 export default function Sidebar({ activePage, onNavigate }: SidebarProps) {
+    const { t } = useI18n();
+
+    const menuItems = [
+        {
+            section: t.nav.home, items: [
+                { id: 'home', label: t.nav.home, icon: Home },
+                { id: 'search', label: t.nav.search, icon: Search },
+                { id: 'seasonal', label: t.nav.seasonal, icon: Calendar },
+                { id: 'top', label: t.nav.topAnime, icon: Star },
+            ]
+        },
+        {
+            section: t.nav.myList, items: [
+                { id: 'mylist', label: t.nav.myList, icon: Library },
+                { id: 'profile', label: t.nav.profile, icon: User },
+                { id: 'logout', label: t.common.logout, icon: LogOut },
+            ]
+        },
+    ];
+
+    const sidebarVariants = {
+        hidden: {},
+        visible: {
+            transition: { staggerChildren: 0.05, delayChildren: 0.15 }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, x: -12 },
+        visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } }
+    };
+
     return (
         <motion.nav
             className="sidebar"

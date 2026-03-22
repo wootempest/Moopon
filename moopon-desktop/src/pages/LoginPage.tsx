@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { LogIn, Loader2 } from 'lucide-react';
 import { startLogin } from '../services/malApi';
+import { useI18n } from '../i18n';
 
 interface LoginPageProps {
     onLoginSuccess: () => void;
@@ -22,6 +23,7 @@ const itemVariants = {
 export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const { t } = useI18n();
 
     const handleLogin = async () => {
         setLoading(true);
@@ -32,13 +34,13 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
             if (success) {
                 onLoginSuccess();
             } else {
-                setError('Giriş başarısız. Tekrar deneyin.');
+                setError(t.login.failed);
             }
         } catch (err: any) {
             if (err.message === 'Auth window closed') {
-                setError('Giriş penceresi kapatıldı.');
+                setError('Auth window closed.');
             } else {
-                setError('Bir hata oluştu: ' + err.message);
+                setError(t.common.error + ': ' + err.message);
             }
         } finally {
             setLoading(false);
@@ -117,7 +119,7 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
                         marginBottom: '32px',
                     }}
                 >
-                    Anime listenizi yönetmenin en şık yolu
+                    {t.login.subtitle}
                 </motion.p>
 
                 {/* Login Card */}
@@ -138,7 +140,7 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
                         marginBottom: '20px',
                         lineHeight: 1.6,
                     }}>
-                        MyAnimeList hesabınızla giriş yaparak anime listenize erişin, puan verin ve takip edin.
+                        {t.login.subtitle}
                     </p>
 
                     {error && (
@@ -167,11 +169,11 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
                     >
                         {loading ? (
                             <>
-                                <Loader2 size={18} className="spin-icon" /> Giriş yapılıyor...
+                                <Loader2 size={18} className="spin-icon" /> {t.login.loggingIn}
                             </>
                         ) : (
                             <>
-                                <LogIn size={18} /> MyAnimeList ile Giriş Yap
+                                <LogIn size={18} /> {t.login.loginButton}
                             </>
                         )}
                     </motion.button>

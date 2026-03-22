@@ -3,16 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Library, Star, Play, ChevronRight, Plus, Minus, Filter, X } from 'lucide-react';
 import { AnimeGridSkeleton } from '../components/Skeleton';
 import { getUserAnimeList, updateAnimeStatus } from '../services/malApi';
+import { useI18n } from '../i18n';
 import type { MalAnime } from '../services/malApi';
-
-const STATUSES = [
-    { value: 'all', label: 'Tümü', color: '#a855f7' },
-    { value: 'watching', label: 'İzleniyor', color: '#a855f7' },
-    { value: 'completed', label: 'Tamamlandı', color: '#22c55e' },
-    { value: 'on_hold', label: 'Beklemede', color: '#eab308' },
-    { value: 'dropped', label: 'Bırakıldı', color: '#ef4444' },
-    { value: 'plan_to_watch', label: 'İzlenecek', color: '#3b82f6' },
-];
 
 const STATUS_COLORS: Record<string, string> = {
     watching: '#a855f7',
@@ -22,23 +14,16 @@ const STATUS_COLORS: Record<string, string> = {
     plan_to_watch: '#3b82f6',
 };
 
-const STATUS_LABELS: Record<string, string> = {
-    watching: 'İzleniyor',
-    completed: 'Tamamlandı',
-    on_hold: 'Beklemede',
-    dropped: 'Bırakıldı',
-    plan_to_watch: 'İzlenecek',
-};
-
 interface MyListPageProps {
     onSelectAnime: (anime: MalAnime) => void;
 }
 
-function AnimeListItem({ anime, index, onClick, onEpisodeUpdate }: {
+function AnimeListItem({ anime, index, onClick, onEpisodeUpdate, statusLabels }: {
     anime: MalAnime;
     index: number;
     onClick: (a: MalAnime) => void;
     onEpisodeUpdate: (animeId: number, newCount: number) => void;
+    statusLabels: Record<string, string>;
 }) {
     const imageUrl = anime.main_picture?.medium || anime.main_picture?.large || '';
     const watched = anime.list_status?.num_episodes_watched || 0;
@@ -46,7 +31,7 @@ function AnimeListItem({ anime, index, onClick, onEpisodeUpdate }: {
     const progress = total > 0 ? (watched / total) * 100 : 0;
     const score = anime.list_status?.score || 0;
     const statusColor = STATUS_COLORS[anime.list_status?.status || ''] || '#a855f7';
-    const statusLabel = STATUS_LABELS[anime.list_status?.status || ''] || '';
+    const statusLabel = statusLabels[anime.list_status?.status || ''] || '';
     const [updating, setUpdating] = useState(false);
 
     const handleEpisodeChange = async (e: React.MouseEvent, delta: number) => {
@@ -60,11 +45,9 @@ function AnimeListItem({ anime, index, onClick, onEpisodeUpdate }: {
             const updates: Record<string, string> = {
                 num_watched_episodes: String(newCount),
             };
-            // Auto-complete if all episodes watched
             if (total > 0 && newCount === total) {
                 updates.status = 'completed';
             }
-            // Auto-set to watching if incrementing from 0
             if (watched === 0 && newCount > 0 && anime.list_status?.status === 'plan_to_watch') {
                 updates.status = 'watching';
             }
@@ -96,7 +79,6 @@ function AnimeListItem({ anime, index, onClick, onEpisodeUpdate }: {
                 borderBottom: '1px solid rgba(255,255,255,0.04)',
             }}
         >
-            {/* Poster */}
             <div style={{
                 width: '60px',
                 height: '84px',
@@ -117,7 +99,6 @@ function AnimeListItem({ anime, index, onClick, onEpisodeUpdate }: {
                 )}
             </div>
 
-            {/* Info */}
             <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{
                     fontSize: '14px',
@@ -157,7 +138,6 @@ function AnimeListItem({ anime, index, onClick, onEpisodeUpdate }: {
                     )}
                 </div>
 
-                {/* Episode Progress */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <div style={{
                         flex: 1,
@@ -186,12 +166,11 @@ function AnimeListItem({ anime, index, onClick, onEpisodeUpdate }: {
                         fontVariantNumeric: 'tabular-nums',
                     }}>
                         <Play size={10} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 2 }} />
-                        {watched}{total > 0 ? ` / ${total}` : ''} bölüm
+                        {watched}{total > 0 ? ` / ${total}` : ''} eps
                     </span>
                 </div>
             </div>
 
-            {/* Episode +/- Buttons */}
             <div style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -244,7 +223,6 @@ function AnimeListItem({ anime, index, onClick, onEpisodeUpdate }: {
                 </motion.button>
             </div>
 
-            {/* Score */}
             <div style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -288,6 +266,24 @@ export default function MyListPage({ onSelectAnime }: MyListPageProps) {
     const [activeGenre, setActiveGenre] = useState<string | null>(null);
     const [animeList, setAnimeList] = useState<MalAnime[]>([]);
     const [loading, setLoading] = useState(true);
+    const { t } = useI18n();
+
+    const STATUSES = [
+        { value: 'all', label: 'All', color: '#a855f7' },
+        { value: 'watching', label: t.list.watching, color: '#a855f7' },
+        { value: 'completed', label: t.list.completed, color: '#22c55e' },
+        { value: 'on_hold', label: t.list.onHold, color: '#eab308' },
+        { value: 'dropped', label: t.list.dropped, color: '#ef4444' },
+        { value: 'plan_to_watch', label: t.list.planToWatch, color: '#3b82f6' },
+    ];
+
+    const STATUS_LABELS: Record<string, string> = {
+        watching: t.status.watching,
+        completed: t.status.completed,
+        on_hold: t.status.on_hold,
+        dropped: t.status.dropped,
+        plan_to_watch: t.status.plan_to_watch,
+    };
 
     const allGenres = useMemo(() => {
         const genreMap = new Map<number, string>();
@@ -351,14 +347,14 @@ export default function MyListPage({ onSelectAnime }: MyListPageProps) {
         ? (scoredAnime.reduce((sum, a) => sum + (a.list_status?.score || 0), 0) / scoredAnime.length).toFixed(1)
         : '—';
 
-return (
+    return (
         <div style={{ padding: '24px' }}>
             <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
             >
-                <h2 className="section-title" style={{ marginBottom: '4px' }}>Listem</h2>
+                <h2 className="section-title" style={{ marginBottom: '4px' }}>{t.list.title}</h2>
                 {!loading && filteredAnimeList.length > 0 && (
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -373,8 +369,8 @@ return (
                         }}
                     >
                         <span><strong style={{ color: 'var(--text-secondary)' }}>{filteredAnimeList.length}</strong> anime</span>
-                        <span><strong style={{ color: 'var(--text-secondary)' }}>{totalEpisodes}</strong> bölüm izlendi</span>
-                        <span>ort. Puan: <strong style={{ color: '#fbbf24' }}>{avgScore}</strong></span>
+                        <span><strong style={{ color: 'var(--text-secondary)' }}>{totalEpisodes}</strong> eps watched</span>
+                        <span>avg Score: <strong style={{ color: '#fbbf24' }}>{avgScore}</strong></span>
                     </motion.div>
                 )}
             </motion.div>
@@ -403,7 +399,6 @@ return (
                 ))}
             </motion.div>
 
-            {/* Genre Filter */}
             {!loading && allGenres.length > 0 && (
                 <motion.div
                     initial={{ opacity: 0, y: 8 }}
@@ -413,7 +408,7 @@ return (
                 >
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
                         <Filter size={14} style={{ color: 'var(--text-muted)' }} />
-                        <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 500 }}>Tür:</span>
+                        <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 500 }}>Genre:</span>
                         {activeGenre && (
                             <motion.button
                                 initial={{ scale: 0.8, opacity: 0 }}
@@ -487,7 +482,6 @@ return (
                             marginTop: '12px',
                         }}
                     >
-                        {/* List Header */}
                         <div style={{
                             display: 'flex',
                             alignItems: 'center',
@@ -501,8 +495,8 @@ return (
                         }}>
                             <span style={{ width: '76px' }}></span>
                             <span style={{ flex: 1 }}>Anime</span>
-                            <span style={{ width: '70px', textAlign: 'center' }}>Bölüm</span>
-                            <span style={{ width: '80px', textAlign: 'right' }}>Puan</span>
+                            <span style={{ width: '70px', textAlign: 'center' }}>Episodes</span>
+                            <span style={{ width: '80px', textAlign: 'right' }}>Score</span>
                         </div>
 
                         {filteredAnimeList.map((anime, i) => (
@@ -512,6 +506,7 @@ return (
                                 index={i}
                                 onClick={onSelectAnime}
                                 onEpisodeUpdate={handleEpisodeUpdate}
+                                statusLabels={STATUS_LABELS}
                             />
                         ))}
                     </motion.div>
@@ -532,8 +527,8 @@ return (
                         >
                             <Library />
                         </motion.div>
-                        <h3>{activeGenre ? `${activeGenre} türünde anime yok` : 'Liste boş'}</h3>
-                        <p>{activeGenre ? 'Farklı bir tür seç veya filtreyi kaldır' : 'Bu kategoride anime bulunmuyor'}</p>
+                        <h3>{t.list.empty}</h3>
+                        <p>{t.list.emptyHint}</p>
                     </motion.div>
                 )}
             </AnimatePresence>

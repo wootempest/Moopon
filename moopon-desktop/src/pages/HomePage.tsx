@@ -5,6 +5,7 @@ import Hero from '../components/Hero';
 import AnimeCard from '../components/AnimeCard';
 import { HeroSkeleton, AnimeRowSkeleton } from '../components/Skeleton';
 import { getAnimeRanking, getSeasonalAnime } from '../services/malApi';
+import { useI18n } from '../i18n';
 import type { MalAnime } from '../services/malApi';
 
 interface HomePageProps {
@@ -112,10 +113,10 @@ function BrowseRow({ children }: { children: ReactNode }) {
                     }}
                 >
                     <span style={{ fontSize: 10, color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: 4 }}>
-                        <ChevronLeft size={12} /> <ChevronRight size={12} /> ile gezin
+                        <ChevronLeft size={12} /> <ChevronRight size={12} /> navigate
                     </span>
                     <span style={{ fontSize: 10, color: 'var(--purple-400)', display: 'flex', alignItems: 'center', gap: 4 }}>
-                        Enter ile seç
+                        Enter select
                     </span>
                 </motion.div>
             )}
@@ -128,6 +129,7 @@ export default function HomePage({ onSelectAnime }: HomePageProps) {
     const [topRated, setTopRated] = useState<MalAnime[]>([]);
     const [seasonal, setSeasonal] = useState<MalAnime[]>([]);
     const [loading, setLoading] = useState(true);
+    const { t } = useI18n();
 
     useEffect(() => {
         async function fetchData() {
@@ -190,7 +192,7 @@ export default function HomePage({ onSelectAnime }: HomePageProps) {
                     variants={sectionVariants}
                 >
                     <div className="section-header">
-                        <h2 className="section-title">Şu An Yayında</h2>
+                        <h2 className="section-title">{t.home.trending}</h2>
                     </div>
                     <BrowseRow>
                         {trending.map((anime, i) => (
@@ -209,7 +211,7 @@ export default function HomePage({ onSelectAnime }: HomePageProps) {
                     variants={sectionVariants}
                 >
                     <div className="section-header">
-                        <h2 className="section-title">En İyiler</h2>
+                        <h2 className="section-title">{t.home.topRated}</h2>
                     </div>
                     <BrowseRow>
                         {topRated.map((anime, i) => (
@@ -228,7 +230,7 @@ export default function HomePage({ onSelectAnime }: HomePageProps) {
                     variants={sectionVariants}
                 >
                     <div className="section-header">
-                        <h2 className="section-title">Bu Sezon</h2>
+                        <h2 className="section-title">{t.home.seasonal}</h2>
                     </div>
                     <BrowseRow>
                         {seasonal.map((anime, i) => (

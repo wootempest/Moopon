@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import AnimeCard from '../components/AnimeCard';
 import { AnimeGridSkeleton } from '../components/Skeleton';
 import { searchAnime } from '../services/malApi';
+import { useI18n } from '../i18n';
 import type { MalAnime } from '../services/malApi';
 
 interface SearchPageProps {
@@ -15,6 +16,7 @@ export default function SearchPage({ onSelectAnime }: SearchPageProps) {
     const [results, setResults] = useState<MalAnime[]>([]);
     const [loading, setLoading] = useState(false);
     const [searched, setSearched] = useState(false);
+    const { t } = useI18n();
 
     useEffect(() => {
         if (!query.trim()) {
@@ -51,7 +53,7 @@ export default function SearchPage({ onSelectAnime }: SearchPageProps) {
                     <Search size={20} />
                     <input
                         type="text"
-                        placeholder="Anime ara..."
+                        placeholder={t.search.placeholder}
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         autoFocus
@@ -97,8 +99,8 @@ export default function SearchPage({ onSelectAnime }: SearchPageProps) {
                         transition={{ duration: 0.3 }}
                     >
                         <Search />
-                        <h3>Sonuç bulunamadı</h3>
-                        <p>Farklı bir arama terimi deneyin</p>
+                        <h3>{t.search.noResults}</h3>
+                        <p>Try a different search term</p>
                     </motion.div>
                 )}
 
@@ -116,8 +118,8 @@ export default function SearchPage({ onSelectAnime }: SearchPageProps) {
                         >
                             <Search />
                         </motion.div>
-                        <h3>Anime Ara</h3>
-                        <p>Arama yapmak için yukarıdaki alanı kullanın</p>
+                        <h3>{t.nav.search}</h3>
+                        <p>Use the search bar above</p>
                     </motion.div>
                 )}
             </AnimatePresence>

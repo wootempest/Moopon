@@ -4,6 +4,7 @@ import { Calendar } from 'lucide-react';
 import AnimeCard from '../components/AnimeCard';
 import { AnimeGridSkeleton } from '../components/Skeleton';
 import { getSeasonalAnime } from '../services/malApi';
+import { useI18n } from '../i18n';
 import type { MalAnime } from '../services/malApi';
 
 interface SeasonalPageProps {
@@ -12,10 +13,10 @@ interface SeasonalPageProps {
 
 const SEASONS = ['winter', 'spring', 'summer', 'fall'];
 const SEASON_LABELS: Record<string, string> = {
-    winter: 'Kış',
-    spring: 'İlkbahar',
-    summer: 'Yaz',
-    fall: 'Sonbahar',
+    winter: 'Winter',
+    spring: 'Spring',
+    summer: 'Summer',
+    fall: 'Fall',
 };
 
 function getCurrentSeason() {
@@ -34,6 +35,7 @@ export default function SeasonalPage({ onSelectAnime }: SeasonalPageProps) {
     const [season, setSeason] = useState(currentSeason);
     const [animeList, setAnimeList] = useState<MalAnime[]>([]);
     const [loading, setLoading] = useState(true);
+    const { t } = useI18n();
 
     useEffect(() => {
         async function fetchSeasonal() {
@@ -64,7 +66,7 @@ export default function SeasonalPage({ onSelectAnime }: SeasonalPageProps) {
             >
                 <h2 className="section-title">
                     <Calendar size={20} style={{ marginLeft: 8 }} />
-                    Sezonluk Anime
+                    {t.nav.seasonal}
                 </h2>
             </motion.div>
 
@@ -142,8 +144,8 @@ export default function SeasonalPage({ onSelectAnime }: SeasonalPageProps) {
                         >
                             <Calendar />
                         </motion.div>
-                        <h3>Anime bulunamadı</h3>
-                        <p>Bu sezon için anime verisi yok</p>
+                        <h3>No anime found</h3>
+                        <p>No data available for this season</p>
                     </motion.div>
                 )}
             </AnimatePresence>

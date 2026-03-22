@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import AnimeCard from '../components/AnimeCard';
 import { AnimeGridSkeleton } from '../components/Skeleton';
 import { getAnimeRanking } from '../services/malApi';
+import { useI18n } from '../i18n';
 import type { MalAnime } from '../services/malApi';
 
 interface TopPageProps {
@@ -10,19 +11,20 @@ interface TopPageProps {
 }
 
 const RANKING_TYPES = [
-    { value: 'all', label: 'Genel' },
-    { value: 'airing', label: 'Yayında' },
-    { value: 'upcoming', label: 'Yakında' },
+    { value: 'all', label: 'All' },
+    { value: 'airing', label: 'Airing' },
+    { value: 'upcoming', label: 'Upcoming' },
     { value: 'tv', label: 'TV' },
-    { value: 'movie', label: 'Film' },
-    { value: 'bypopularity', label: 'Popülerlik' },
-    { value: 'favorite', label: 'Favori' },
+    { value: 'movie', label: 'Movie' },
+    { value: 'bypopularity', label: 'Popular' },
+    { value: 'favorite', label: 'Favorite' },
 ];
 
 export default function TopPage({ onSelectAnime }: TopPageProps) {
     const [rankingType, setRankingType] = useState('all');
     const [animeList, setAnimeList] = useState<MalAnime[]>([]);
     const [loading, setLoading] = useState(true);
+    const { t } = useI18n();
 
     useEffect(() => {
         async function fetchRanking() {
@@ -48,7 +50,7 @@ export default function TopPage({ onSelectAnime }: TopPageProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
             >
-                <h2 className="section-title">En İyi Animeler</h2>
+                <h2 className="section-title">{t.nav.topAnime}</h2>
             </motion.div>
 
             <motion.div

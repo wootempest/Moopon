@@ -3,14 +3,15 @@ import { ArrowLeft, Star, Clock, Film, Calendar } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import AddToList from '../components/AddToList';
+import { useI18n } from '../i18n';
 import type { MalAnime } from '../services/malApi';
 
-const STATUS_MAP: Record<string, { label: string; color: string }> = {
-    watching: { label: 'İzleniyor', color: '#a855f7' },
-    completed: { label: 'Tamamlandı', color: '#22c55e' },
-    on_hold: { label: 'Beklemede', color: '#eab308' },
-    dropped: { label: 'Bırakıldı', color: '#ef4444' },
-    plan_to_watch: { label: 'İzlenecek', color: '#3b82f6' },
+const STATUS_COLORS: Record<string, string> = {
+    watching: '#a855f7',
+    completed: '#22c55e',
+    on_hold: '#eab308',
+    dropped: '#ef4444',
+    plan_to_watch: '#3b82f6',
 };
 
 interface DetailPageProps {
@@ -21,7 +22,12 @@ interface DetailPageProps {
 
 export default function DetailPage({ anime, onBack }: DetailPageProps) {
     const imageUrl = anime.main_picture?.large || anime.main_picture?.medium || '';
-    const statusInfo = anime.list_status ? STATUS_MAP[anime.list_status.status] : null;
+    const { t } = useI18n();
+
+    const status = anime.list_status?.status as keyof typeof t.status | undefined;
+    const statusInfo = status
+        ? { label: t.status[status], color: STATUS_COLORS[status] }
+        : null;
 
     return (
         <motion.div
@@ -94,7 +100,7 @@ export default function DetailPage({ anime, onBack }: DetailPageProps) {
                             )}
                             {anime.num_episodes && (
                                 <div className="detail-stat">
-                                    <Film size={16} /> {anime.num_episodes} Bölüm
+                                    <Film size={16} /> {anime.num_episodes} Episodes
                                 </div>
                             )}
                             {anime.media_type && (
@@ -141,7 +147,7 @@ export default function DetailPage({ anime, onBack }: DetailPageProps) {
                         whileHover={{ scale: 1.04 }}
                         whileTap={{ scale: 0.96 }}
                     >
-                        <ArrowLeft size={16} /> Geri
+                        <ArrowLeft size={16} /> {t.common.back}
                     </motion.button>
                     <AddToList animeId={anime.id} currentStatus={anime.list_status?.status} variant="primary" />
                 </motion.div>
@@ -152,7 +158,7 @@ export default function DetailPage({ anime, onBack }: DetailPageProps) {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.8, duration: 0.4 }}
                 >
-                    Özet
+                    {t.detail.synopsis}
                 </motion.h2>
                 <motion.div
                     className="detail-synopsis"
@@ -161,7 +167,7 @@ export default function DetailPage({ anime, onBack }: DetailPageProps) {
                     transition={{ delay: 0.9, duration: 0.5 }}
                 >
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                        {anime.synopsis || 'Ozet bilgisi mevcut degil.'}
+                        {anime.synopsis || t.detail.noSynopsis}
                     </ReactMarkdown>
                 </motion.div>
             </motion.div>
