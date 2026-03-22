@@ -31,7 +31,10 @@
 
 ## Screenshots
 
-*Coming soon*
+![Moopon Home](Screenshot%20moopon/screenshot_20260323_012701.jpg)
+![Moopon Anime Detail](Screenshot%20moopon/screenshot_20260323_012820.jpg)
+![Moopon Search](Screenshot%20moopon/screenshot_20260323_012832.jpg)
+![Moopon My List](Screenshot%20moopon/screenshot_20260323_012847.jpg)
 
 ---
 
@@ -121,7 +124,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Ekran Görüntüleri
 
-*Çok yakında*
+![Moopon Ana Sayfa](Screenshot%20moopon/screenshot_20260323_012701.jpg)
+![Moopon Anime Detay](Screenshot%20moopon/screenshot_20260323_012820.jpg)
+![Moopon Arama](Screenshot%20moopon/screenshot_20260323_012832.jpg)
+![Moopon Listem](Screenshot%20moopon/screenshot_20260323_012847.jpg)
 
 ---
 
