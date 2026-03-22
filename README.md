@@ -1,7 +1,7 @@
-# Moopon
+# moopon
 
 <p align="center">
-  <img src="icon.png" alt="Moopon Logo" width="128" />
+  <img src="icon.png" alt="moopon Logo" width="128" />
 </p>
 
 <p align="center">
@@ -35,37 +35,22 @@
 
 ---
 
-## Özellikler
-
-- **MyAnimeList Entegrasyonu** - Anime listenizi MAL ile senkronize edin
-- **Güzel Koyu Arayüz** - Mor aksanlı, anime ilhamlı modern koyu tema
-- **Klavye Navigasyonu** - Ok tuşlarıyla tam navigasyon
-- **Anime Gezgini** - Trend, en yüksek puanlı ve mevsimlik anime'leri keşfedin
-- **İlerleme Takibi** - İzlenen, tamamlanan, bekleyen, bırakılan ve planlanan anime'leri takip edin
-- **Masaüstü Uygulaması** - Electron ile native his (Linux & Windows)
-
-## Ekran Görüntüleri
-
-*Çok yakında*
-
----
-
-## Download / İndir
+## Download
 
 ### Linux
-- [AppImage](https://github.com/wootempest/Moopon/releases/latest/download/Moopon-1.1.1.AppImage) - Evrensel Linux paketi
-- [pacman](https://github.com/wootempest/Moopon/releases/latest/download/moopon-1.1.1.pacman) - Arch Linux paketi
+- [AppImage](https://github.com/wootempest/Moopon/releases/latest/download/Moopon-1.1.1.AppImage) - Universal Linux package
+- [pacman](https://github.com/wootempest/Moopon/releases/latest/download/moopon-1.1.1.pacman) - Arch Linux package
 
 ### Windows
-- [Installer](https://github.com/wootempest/Moopon/releases/latest/download/Moopon%20Setup%201.1.1.exe) - NSIS kurulumu
+- [Installer](https://github.com/wootempest/Moopon/releases/latest/download/Moopon%20Setup%201.1.1.exe) - NSIS installer
 
-## Development / Geliştirme
+## Development
 
-### Prerequisites / Gereksinimler
+### Prerequisites
 - Node.js 18+
 - npm 9+
 
-### Setup / Kurulum
+### Setup
 ```bash
 # Clone the repository
 git clone https://github.com/wootempest/Moopon.git
@@ -90,7 +75,7 @@ npm run electron:build:win     # Windows
 - **API**: MyAnimeList API v2
 - **Icons**: Lucide React
 
-## Architecture / Mimari
+## Architecture
 
 ```
 moopon-desktop/
@@ -107,20 +92,100 @@ moopon-desktop/
 └── package.json      # Dependencies
 ```
 
-## License / Lisans
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Bu proje MIT Lisansı ile lisanslanmıştır - Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+## Acknowledgments
 
-## Acknowledgments / Teşekkürler
-
-- [MyAnimeList](https://myanimelist.net/) for their API / API'leri için
-- [Lucide](https://lucide.dev/) for beautiful icons / Güzel ikonlar için
-- All contributors and users / Tüm katkıda bulunanlar ve kullanıcılar
+- [MyAnimeList](https://myanimelist.net/) for their API
+- [Lucide](https://lucide.dev/) for beautiful icons
+- All contributors and users
 
 ---
 
 <p align="center">
-  Made with ❤️ for anime fans / Anime hayranları için ❤️ ile yapıldı
+  Made with ❤️ for anime fans
+</p>
+
+---
+
+## Özellikler
+
+- **MyAnimeList Entegrasyonu** - Anime listenizi MAL ile senkronize edin
+- **Güzel Koyu Arayüz** - Mor aksanlı, anime ilhamlı modern koyu tema
+- **Klavye Navigasyonu** - Ok tuşlarıyla tam navigasyon
+- **Anime Gezgini** - Trend, en yüksek puanlı ve mevsimlik anime'leri keşfedin
+- **İlerleme Takibi** - İzlenen, tamamlanan, bekleyen, bırakılan ve planlanan anime'leri takip edin
+- **Masaüstü Uygulaması** - Electron ile native his (Linux & Windows)
+
+## Ekran Görüntüleri
+
+*Çok yakında*
+
+---
+
+## İndir
+
+### Linux
+- [AppImage](https://github.com/wootempest/Moopon/releases/latest/download/Moopon-1.1.1.AppImage) - Evrensel Linux paketi
+- [pacman](https://github.com/wootempest/Moopon/releases/latest/download/moopon-1.1.1.pacman) - Arch Linux paketi
+
+### Windows
+- [Installer](https://github.com/wootempest/Moopon/releases/latest/download/Moopon%20Setup%201.1.1.exe) - NSIS kurulumu
+
+## Geliştirme
+
+### Gereksinimler
+- Node.js 18+
+- npm 9+
+
+### Kurulum
+```bash
+# Repoyu klonlayın
+git clone https://github.com/wootempest/Moopon.git
+cd Moopon/moopon-desktop
+
+# Bağımlılıkları yükleyin
+npm install
+
+# Geliştirme modunda çalıştırın
+npm run electron:dev
+
+# Prodüksiyon için build edin
+npm run electron:build:linux   # Linux
+npm run electron:build:win     # Windows
+```
+
+## Mimari
+
+```
+moopon-desktop/
+├── electron/           # Electron ana süreç
+│   ├── main.cjs       # Ana giriş noktası
+│   └── preload.cjs    # Preload scriptleri
+├── src/
+│   ├── components/     # React bileşenleri
+│   ├── pages/         # Sayfa bileşenleri
+│   ├── services/      # API servisleri
+│   ├── App.tsx        # Ana uygulama bileşeni
+│   └── main.tsx       # React giriş noktası
+├── public/            # Statik varlıklar
+└── package.json      # Bağımlılıklar
+```
+
+## Lisans
+
+Bu proje MIT Lisansı ile lisanslanmıştır - Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+
+## Teşekkürler
+
+- [MyAnimeList](https://myanimelist.net/) API'leri için
+- [Lucide](https://lucide.dev/) güzel ikonları için
+- Tüm katkıda bulunanlar ve kullanıcılar
+
+---
+
+<p align="center">
+  Anime hayranları için ❤️ ile yapıldı
 </p>
