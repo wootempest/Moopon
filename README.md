@@ -38,11 +38,11 @@
 ## Download
 
 ### Linux
-- [AppImage](https://github.com/wootempest/Moopon/releases/latest/download/Moopon-1.1.1.AppImage) - Universal Linux package
-- [pacman](https://github.com/wootempest/Moopon/releases/latest/download/moopon-1.1.1.pacman) - Arch Linux package
+- [AppImage](https://github.com/wootempest/Moopon/releases/tag/Moopon/download/Moopon-1.1.1.AppImage) - Universal Linux package
+- [pacman](https://github.com/wootempest/Moopon/releases/tag/Moopon/download/moopon-1.1.1.pacman) - Arch Linux package
 
 ### Windows
-- [Installer](https://github.com/wootempest/Moopon/releases/latest/download/Moopon%20Setup%201.1.1.exe) - NSIS installer
+- [Installer](https://github.com/wootempest/Moopon/releases/tag/Moopon/download/Moopon%20Setup%201.1.1.exe) - NSIS installer
 
 ## Development
 
@@ -128,11 +128,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## İndir
 
 ### Linux
-- [AppImage](https://github.com/wootempest/Moopon/releases/latest/download/Moopon-1.1.1.AppImage) - Evrensel Linux paketi
-- [pacman](https://github.com/wootempest/Moopon/releases/latest/download/moopon-1.1.1.pacman) - Arch Linux paketi
+- [AppImage](https://github.com/wootempest/Moopon/releases/tag/Moopon/download/Moopon-1.1.1.AppImage) - Evrensel Linux paketi
+- [pacman](https://github.com/wootempest/Moopon/releases/tag/Moopon/download/moopon-1.1.1.pacman) - Arch Linux paketi
 
 ### Windows
-- [Installer](https://github.com/wootempest/Moopon/releases/latest/download/Moopon%20Setup%201.1.1.exe) - NSIS kurulumu
+- [Installer](https://github.com/wootempest/Moopon/releases/tag/Moopon/download/Moopon%20Setup%201.1.1.exe) - NSIS kurulumu
 
 ## Geliştirme
 
