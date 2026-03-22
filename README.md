@@ -9,11 +9,11 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/yourusername/moopon/releases">
-    <img src="https://img.shields.io/github/v/release/yourusername/moopon?style=flat-square" alt="Release" />
+  <a href="https://github.com/wootempest/Moopon/releases">
+    <img src="https://img.shields.io/github/v/release/wootempest/Moopon?style=flat-square" alt="Release" />
   </a>
-  <a href="https://github.com/yourusername/moopon/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/yourusername/moopon?style=flat-square" alt="License" />
+  <a href="https://github.com/wootempest/Moopon/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/wootempest/Moopon?style=flat-square" alt="License" />
   </a>
   <img src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows-blue?style=flat-square" alt="Platform" />
 </p>
@@ -33,26 +33,43 @@
 
 *Coming soon*
 
-## Download
+---
+
+## Özellikler
+
+- **MyAnimeList Entegrasyonu** - Anime listenizi MAL ile senkronize edin
+- **Güzel Koyu Arayüz** - Mor aksanlı, anime ilhamlı modern koyu tema
+- **Klavye Navigasyonu** - Ok tuşlarıyla tam navigasyon
+- **Anime Gezgini** - Trend, en yüksek puanlı ve mevsimlik anime'leri keşfedin
+- **İlerleme Takibi** - İzlenen, tamamlanan, bekleyen, bırakılan ve planlanan anime'leri takip edin
+- **Masaüstü Uygulaması** - Electron ile native his (Linux & Windows)
+
+## Ekran Görüntüleri
+
+*Çok yakında*
+
+---
+
+## Download / İndir
 
 ### Linux
-- [AppImage](https://github.com/yourusername/moopon/releases/latest/download/Moopon-1.1.1.AppImage) - Universal Linux package
-- [pacman](https://github.com/yourusername/moopon/releases/latest/download/moopon-1.1.1.pacman) - Arch Linux package
+- [AppImage](https://github.com/wootempest/Moopon/releases/latest/download/Moopon-1.1.1.AppImage) - Evrensel Linux paketi
+- [pacman](https://github.com/wootempest/Moopon/releases/latest/download/moopon-1.1.1.pacman) - Arch Linux paketi
 
 ### Windows
-- [Installer](https://github.com/yourusername/moopon/releases/latest/download/Moopon%20Setup%201.1.1.exe) - NSIS installer
+- [Installer](https://github.com/wootempest/Moopon/releases/latest/download/Moopon%20Setup%201.1.1.exe) - NSIS kurulumu
 
-## Development
+## Development / Geliştirme
 
-### Prerequisites
+### Prerequisites / Gereksinimler
 - Node.js 18+
 - npm 9+
 
-### Setup
+### Setup / Kurulum
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/moopon.git
-cd moopon/moopon-desktop
+git clone https://github.com/wootempest/Moopon.git
+cd Moopon/moopon-desktop
 
 # Install dependencies
 npm install
@@ -73,7 +90,7 @@ npm run electron:build:win     # Windows
 - **API**: MyAnimeList API v2
 - **Icons**: Lucide React
 
-## Architecture
+## Architecture / Mimari
 
 ```
 moopon-desktop/
@@ -90,18 +107,20 @@ moopon-desktop/
 └── package.json      # Dependencies
 ```
 
-## License
+## License / Lisans
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
+Bu proje MIT Lisansı ile lisanslanmıştır - Detaylar için [LICENSE](LICENSE) dosyasına bakın.
 
-- [MyAnimeList](https://myanimelist.net/) for their API
-- [Lucide](https://lucide.dev/) for beautiful icons
-- All contributors and users
+## Acknowledgments / Teşekkürler
+
+- [MyAnimeList](https://myanimelist.net/) for their API / API'leri için
+- [Lucide](https://lucide.dev/) for beautiful icons / Güzel ikonlar için
+- All contributors and users / Tüm katkıda bulunanlar ve kullanıcılar
 
 ---
 
 <p align="center">
-  Made with ❤️ for anime fans
+  Made with ❤️ for anime fans / Anime hayranları için ❤️ ile yapıldı
 </p>
