@@ -35,7 +35,7 @@ export const ru: TranslationKeys = {
         topRated: 'Лучшее',
         seasonal: 'Сезонное аниме',
         seeAll: 'Все',
-        navigate: 'навигация',
+        navigate: 'Навигация',
         enterSelect: 'Enter для выбора',
         trendingNumber: 'Тренд #1',
         details: 'Подробнее',
@@ -99,7 +99,7 @@ export const ru: TranslationKeys = {
     list: {
         title: 'Мой список аниме',
         empty: 'Ваш список пуст.',
-        emptyHint: 'Добавляйте аниме со страниц просмотра.',
+        emptyHint: 'Добавляйте аниме на страницах обзора.',
         watching: 'Смотрю',
         completed: 'Просмотрено',
         onHold: 'Отложено',
