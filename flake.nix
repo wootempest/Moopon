@@ -3,20 +3,19 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils }:
+  outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
       in
       {
         packages = {
-          default = self.packages.${system}.appimage;
+          default = self.packages.${system}.moopon;
 
-          appimage = pkgs.stdenv.mkDerivation {
+          moopon = pkgs.stdenv.mkDerivation {
             pname = "moopon";
             version = "1.1.1";
 
@@ -34,23 +33,23 @@
 
             buildPhase = ''
               cd moopon-desktop
-              npm ci
+              npm install
               npm run build
               npm exec electron-builder -- --linux AppImage
             '';
 
             installPhase = ''
               mkdir -p $out/bin
-              cp moopon-desktop/release/*.AppImage $out/bin/moopon.AppImage
-              chmod +x $out/bin/moopon.AppImage
+              cp moopon-desktop/release/*.AppImage $out/bin/moopon
+              chmod +x $out/bin/moopon
             '';
 
             meta = with pkgs.lib; {
               description = "Moopon - Premium Anime List Manager";
-              homepage = "https://moopon.app";
+              homepage = "https://github.com/wootempest/Moopon";
               license = licenses.mit;
               platforms = platforms.linux;
-              mainProgram = "moopon.AppImage";
+              mainProgram = "moopon";
             };
           };
         };
@@ -69,14 +68,15 @@
             echo " Moopon - Premium Anime List Manager"
             echo "========================================="
             echo ""
-            echo "CachyOS & NixOS uyumlu"
-            echo ""
             echo "Development:"
             echo "  npm run electron:dev"
             echo ""
-            echo "Build:"
+            echo "Build & Run:"
             echo "  nix build"
-            echo "  ./result/bin/moopon.AppImage"
+            echo "  ./result/bin/moopon"
+            echo ""
+            echo "Install to profile:"
+            echo "  nix profile install .#moopon"
             echo ""
           '';
         };
