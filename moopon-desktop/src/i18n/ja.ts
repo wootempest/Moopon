@@ -57,7 +57,7 @@ export const ja: TranslationKeys = {
     },
     empty: {
         noAnimeFound: 'アニメが見つかりません',
-        noDataAvailable: 'この季度的データがありません',
+        noDataAvailable: 'この季度的データは利用できません',
         tryDifferentSearch: '別の検索語をお試しください',
         useSearchBar: '上の検索バーを使用してください',
     },
