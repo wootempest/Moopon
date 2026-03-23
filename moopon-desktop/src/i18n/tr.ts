@@ -37,6 +37,8 @@ export const tr: TranslationKeys = {
         seeAll: 'Tümünü Gör',
         navigate: 'navigate',
         enterSelect: 'Enter seç',
+        trendingNumber: 'Trend #1',
+        details: 'Detaylar',
     },
     seasons: {
         winter: 'Kış',
@@ -62,6 +64,7 @@ export const tr: TranslationKeys = {
     detail: {
         synopsis: 'Özet',
         noSynopsis: 'Özet bilgisi mevcut değil.',
+        noImage: 'Görsel yok',
         addToList: 'Listeye Ekle',
         score: 'Puan',
         episodes: 'Bölüm',
@@ -127,5 +130,11 @@ export const tr: TranslationKeys = {
         selectSubtitle: 'Tercih ettiğiniz dili seçin',
         english: 'English',
         turkish: 'Türkçe',
+        japanese: 'Japonca',
+        french: 'Fransızca',
+        german: 'Almanca',
+        russian: 'Rusça',
+        spanish: 'İspanyolca',
+        italian: 'İtalyanca',
     },
 };

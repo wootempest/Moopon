@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Star, TrendingUp } from 'lucide-react';
+import { useI18n } from '../i18n';
 import type { MalAnime } from '../services/malApi';
 
 interface AnimeCardProps {
@@ -11,6 +12,7 @@ interface AnimeCardProps {
 }
 
 export default function AnimeCard({ anime, index, showRank, onClick }: AnimeCardProps) {
+    const { t } = useI18n();
     const imageUrl = anime.main_picture?.large || anime.main_picture?.medium || '';
     const [imageLoaded, setImageLoaded] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
@@ -42,7 +44,7 @@ export default function AnimeCard({ anime, index, showRank, onClick }: AnimeCard
                     />
                 ) : (
                     <div style={{ width: '100%', height: '100%', background: 'var(--bg-card)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)', fontSize: '12px' }}>
-                        Görsel Yok
+                        {t.detail.noImage}
                     </div>
                 )}
                 <motion.div

@@ -48,6 +48,66 @@ export default function LanguageModal({ onSelect }: LanguageModalProps) {
                         <span className="language-flag">🇹🇷</span>
                         <span className="language-name">{t.language.turkish}</span>
                     </motion.button>
+
+                    <motion.button
+                        className="language-option"
+                        onClick={() => onSelect('ja')}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        <span className="language-flag">🇯🇵</span>
+                        <span className="language-name">{t.language.japanese}</span>
+                    </motion.button>
+
+                    <motion.button
+                        className="language-option"
+                        onClick={() => onSelect('fr')}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        <span className="language-flag">🇫🇷</span>
+                        <span className="language-name">{t.language.french}</span>
+                    </motion.button>
+
+                    <motion.button
+                        className="language-option"
+                        onClick={() => onSelect('de')}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        <span className="language-flag">🇩🇪</span>
+                        <span className="language-name">{t.language.german}</span>
+                    </motion.button>
+
+                    <motion.button
+                        className="language-option"
+                        onClick={() => onSelect('ru')}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        <span className="language-flag">🇷🇺</span>
+                        <span className="language-name">{t.language.russian}</span>
+                    </motion.button>
+
+                    <motion.button
+                        className="language-option"
+                        onClick={() => onSelect('es')}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        <span className="language-flag">🇪🇸</span>
+                        <span className="language-name">{t.language.spanish}</span>
+                    </motion.button>
+
+                    <motion.button
+                        className="language-option"
+                        onClick={() => onSelect('it')}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        <span className="language-flag">🇮🇹</span>
+                        <span className="language-name">{t.language.italian}</span>
+                    </motion.button>
                 </div>
             </motion.div>
         </motion.div>

@@ -4,6 +4,7 @@ import { Play, Star, Flame } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import AddToList from './AddToList';
+import { useI18n } from '../i18n';
 import type { MalAnime } from '../services/malApi';
 
 interface HeroProps {
@@ -12,6 +13,7 @@ interface HeroProps {
 }
 
 export default function Hero({ anime, onSelect }: HeroProps) {
+    const { t } = useI18n();
     const imageUrl = anime.main_picture?.large || anime.main_picture?.medium || '';
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const heroRef = useRef<HTMLDivElement>(null);
@@ -79,7 +81,7 @@ export default function Hero({ anime, onSelect }: HeroProps) {
                     animate={{ scale: 1, opacity: 1, y: 0 }}
                     transition={{ delay: 0.55, duration: 0.5, type: 'spring', stiffness: 280 }}
                 >
-                    <Flame size={12} fill="currentColor" /> Trending #1
+                    <Flame size={12} fill="currentColor" /> {t.home.trendingNumber}
                 </motion.div>
                 <motion.h1
                     className="hero-title"
@@ -100,7 +102,7 @@ export default function Hero({ anime, onSelect }: HeroProps) {
                             <Star size={14} fill="currentColor" /> {anime.mean.toFixed(2)}
                         </span>
                     )}
-                    {anime.num_episodes && <span>{anime.num_episodes} Bölüm</span>}
+                    {anime.num_episodes && <span>{anime.num_episodes} {t.detail.episodes}</span>}
                     {anime.media_type && <span>{anime.media_type.toUpperCase()}</span>}
                     {anime.start_season && <span>{anime.start_season.season} {anime.start_season.year}</span>}
                 </motion.div>
@@ -126,7 +128,7 @@ export default function Hero({ anime, onSelect }: HeroProps) {
                         whileHover={{ scale: 1.03, boxShadow: '0 0 35px rgba(168, 85, 247, 0.5), 0 0 80px rgba(168, 85, 247, 0.15)' }}
                         whileTap={{ scale: 0.97 }}
                     >
-                        <Play size={16} fill="currentColor" /> Detaylar
+                        <Play size={16} fill="currentColor" /> {t.home.details}
                     </motion.button>
                     <AddToList animeId={anime.id} currentStatus={anime.list_status?.status} />
                 </motion.div>

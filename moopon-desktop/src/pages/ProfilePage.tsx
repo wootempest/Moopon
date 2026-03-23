@@ -146,14 +146,14 @@ export default function ProfilePage({ onLogout }: ProfilePageProps) {
                                 onChange={handleLanguageChange}
                                 className="language-select"
                             >
-                                <option value="en">English</option>
-                                <option value="tr">Türkçe</option>
-                                <option value="ja">日本語</option>
-                                <option value="fr">Français</option>
-                                <option value="de">Deutsch</option>
-                                <option value="ru">Русский</option>
-                                <option value="es">Español</option>
-                                <option value="it">Italiano</option>
+                                <option value="en">{t.language.english}</option>
+                                <option value="tr">{t.language.turkish}</option>
+                                <option value="ja">{t.language.japanese}</option>
+                                <option value="fr">{t.language.french}</option>
+                                <option value="de">{t.language.german}</option>
+                                <option value="ru">{t.language.russian}</option>
+                                <option value="es">{t.language.spanish}</option>
+                                <option value="it">{t.language.italian}</option>
                             </select>
                         </motion.div>
                     </div>

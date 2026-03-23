@@ -109,7 +109,7 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
                         WebkitTextFillColor: 'transparent',
                     }}
                 >
-                    Moopon
+                    {t.common.appName}
                 </motion.h1>
                 <motion.p
                     variants={itemVariants}

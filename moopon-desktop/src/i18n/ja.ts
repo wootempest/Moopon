@@ -33,10 +33,12 @@ export const ja: TranslationKeys = {
     home: {
         trending: 'トレンド',
         topRated: '高評価',
-        seasonal: ' сезон',
+        seasonal: 'シーズン',
         seeAll: 'すべて見る',
         navigate: '移動',
         enterSelect: 'Enterで選択',
+        trendingNumber: 'トレンド #1',
+        details: '詳細',
     },
     seasons: {
         winter: '冬',
@@ -62,6 +64,7 @@ export const ja: TranslationKeys = {
     detail: {
         synopsis: 'あらすじ',
         noSynopsis: 'あらすじがありません。',
+        noImage: '画像なし',
         addToList: 'リストに追加',
         score: 'スコア',
         episodes: '話',
@@ -127,5 +130,11 @@ export const ja: TranslationKeys = {
         selectSubtitle: '希望する言語を選択してください',
         english: 'English',
         turkish: 'Türkçe',
+        japanese: '日本語',
+        french: 'フランス語',
+        german: 'ドイツ語',
+        russian: 'ロシア語',
+        spanish: 'スペイン語',
+        italian: 'イタリア語',
     },
 };

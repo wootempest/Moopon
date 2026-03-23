@@ -35,8 +35,10 @@ export const it: TranslationKeys = {
         topRated: 'I più votati',
         seasonal: 'Anime stagionali',
         seeAll: 'Vedi tutto',
-        navigate: 'naviga',
+        navigate: 'Naviga',
         enterSelect: 'Invio per selezionare',
+        trendingNumber: 'Tendenze #1',
+        details: 'Dettagli',
     },
     seasons: {
         winter: 'Inverno',
@@ -62,6 +64,7 @@ export const it: TranslationKeys = {
     detail: {
         synopsis: 'Trama',
         noSynopsis: 'Trama non disponibile.',
+        noImage: 'Nessuna immagine',
         addToList: 'Aggiungi alla lista',
         score: 'Punteggio',
         episodes: 'Episodi',
@@ -127,5 +130,11 @@ export const it: TranslationKeys = {
         selectSubtitle: 'Scegli la lingua preferita',
         english: 'English',
         turkish: 'Türkçe',
+        japanese: 'Giapponese',
+        french: 'Francese',
+        german: 'Tedesco',
+        russian: 'Russo',
+        spanish: 'Spagnolo',
+        italian: 'Italiano',
     },
 };

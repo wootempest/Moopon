@@ -37,6 +37,8 @@ export const ru: TranslationKeys = {
         seeAll: 'Все',
         navigate: 'навигация',
         enterSelect: 'Enter для выбора',
+        trendingNumber: 'Тренд #1',
+        details: 'Подробнее',
     },
     seasons: {
         winter: 'Зима',
@@ -62,6 +64,7 @@ export const ru: TranslationKeys = {
     detail: {
         synopsis: 'Описание',
         noSynopsis: 'Описание недоступно.',
+        noImage: 'Нет изображения',
         addToList: 'Добавить в список',
         score: 'Оценка',
         episodes: 'Серии',
@@ -127,5 +130,11 @@ export const ru: TranslationKeys = {
         selectSubtitle: 'Выберите предпочитаемый язык',
         english: 'English',
         turkish: 'Türkçe',
+        japanese: 'Японский',
+        french: 'Французский',
+        german: 'Немецкий',
+        russian: 'Русский',
+        spanish: 'Испанский',
+        italian: 'Итальянский',
     },
 };

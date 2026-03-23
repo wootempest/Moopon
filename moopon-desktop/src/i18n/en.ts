@@ -35,6 +35,8 @@ export const en = {
         seeAll: 'See All',
         navigate: 'navigate',
         enterSelect: 'Enter select',
+        trendingNumber: 'Trending #1',
+        details: 'Details',
     },
     seasons: {
         winter: 'Winter',
@@ -60,6 +62,7 @@ export const en = {
     detail: {
         synopsis: 'Synopsis',
         noSynopsis: 'No synopsis available.',
+        noImage: 'No image',
         addToList: 'Add to List',
         score: 'Score',
         episodes: 'Episodes',
@@ -125,6 +128,12 @@ export const en = {
         selectSubtitle: 'Choose your preferred language',
         english: 'English',
         turkish: 'Türkçe',
+        japanese: '日本語',
+        french: 'Français',
+        german: 'Deutsch',
+        russian: 'Русский',
+        spanish: 'Español',
+        italian: 'Italiano',
     },
 };
 

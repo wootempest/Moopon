@@ -37,6 +37,8 @@ export const es: TranslationKeys = {
         seeAll: 'Ver todo',
         navigate: 'Navegar',
         enterSelect: 'Enter para seleccionar',
+        trendingNumber: 'Tendencias #1',
+        details: 'Detalles',
     },
     seasons: {
         winter: 'Invierno',
@@ -62,6 +64,7 @@ export const es: TranslationKeys = {
     detail: {
         synopsis: 'Sinopsis',
         noSynopsis: 'Sinopsis no disponible.',
+        noImage: 'Sin imagen',
         addToList: 'Añadir a la lista',
         score: 'Puntuación',
         episodes: 'Episodios',
@@ -127,5 +130,11 @@ export const es: TranslationKeys = {
         selectSubtitle: 'Elige tu idioma preferido',
         english: 'English',
         turkish: 'Türkçe',
+        japanese: 'Japonés',
+        french: 'Francés',
+        german: 'Alemán',
+        russian: 'Ruso',
+        spanish: 'Español',
+        italian: 'Italiano',
     },
 };
