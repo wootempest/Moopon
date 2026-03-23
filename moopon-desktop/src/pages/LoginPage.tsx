@@ -38,7 +38,7 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
             }
         } catch (err: any) {
             if (err.message === 'Auth window closed') {
-                setError('Auth window closed.');
+                setError(t.login.authWindowClosed);
             } else {
                 setError(t.common.error + ': ' + err.message);
             }

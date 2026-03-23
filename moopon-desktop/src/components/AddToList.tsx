@@ -113,7 +113,7 @@ export default function AddToList({ animeId, currentStatus, currentScore, varian
                 ) : (
                     <>
                         <BookmarkPlus size={16} />
-                        {saving ? 'Saving...' : t.detail.addToList}
+                        {saving ? t.detail.saving : t.detail.addToList}
                     </>
                 )}
             </button>
@@ -134,7 +134,7 @@ export default function AddToList({ animeId, currentStatus, currentScore, varian
                             color: 'var(--text-muted)',
                             textTransform: 'uppercase',
                             letterSpacing: '1px',
-                        }}>Status</div>
+                        }}>{t.detail.status}</div>
 
                         {STATUSES.map(status => (
                             <button
@@ -174,7 +174,7 @@ export default function AddToList({ animeId, currentStatus, currentScore, varian
                             color: 'var(--text-muted)',
                             textTransform: 'uppercase',
                             letterSpacing: '1px',
-                        }}>Score</div>
+                        }}>{t.detail.score}</div>
 
                         <div style={{
                             display: 'flex',

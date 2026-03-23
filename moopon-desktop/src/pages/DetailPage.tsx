@@ -100,7 +100,7 @@ export default function DetailPage({ anime, onBack }: DetailPageProps) {
                             )}
                             {anime.num_episodes && (
                                 <div className="detail-stat">
-                                    <Film size={16} /> {anime.num_episodes} Episodes
+                                    <Film size={16} /> {anime.num_episodes} {t.detail.episodes}
                                 </div>
                             )}
                             {anime.media_type && (

@@ -33,6 +33,7 @@ function AnimeListItem({ anime, index, onClick, onEpisodeUpdate, statusLabels }:
     const statusColor = STATUS_COLORS[anime.list_status?.status || ''] || '#a855f7';
     const statusLabel = statusLabels[anime.list_status?.status || ''] || '';
     const [updating, setUpdating] = useState(false);
+    const { t } = useI18n();
 
     const handleEpisodeChange = async (e: React.MouseEvent, delta: number) => {
         e.stopPropagation();
@@ -166,7 +167,7 @@ function AnimeListItem({ anime, index, onClick, onEpisodeUpdate, statusLabels }:
                         fontVariantNumeric: 'tabular-nums',
                     }}>
                         <Play size={10} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 2 }} />
-                        {watched}{total > 0 ? ` / ${total}` : ''} eps
+                        {watched}{total > 0 ? ` / ${total}` : ''} {t.list.eps}
                     </span>
                 </div>
             </div>
@@ -269,7 +270,7 @@ export default function MyListPage({ onSelectAnime }: MyListPageProps) {
     const { t } = useI18n();
 
     const STATUSES = [
-        { value: 'all', label: 'All', color: '#a855f7' },
+        { value: 'all', label: t.ranking.all, color: '#a855f7' },
         { value: 'watching', label: t.list.watching, color: '#a855f7' },
         { value: 'completed', label: t.list.completed, color: '#22c55e' },
         { value: 'on_hold', label: t.list.onHold, color: '#eab308' },
@@ -368,9 +369,9 @@ export default function MyListPage({ onSelectAnime }: MyListPageProps) {
                             marginBottom: '16px',
                         }}
                     >
-                        <span><strong style={{ color: 'var(--text-secondary)' }}>{filteredAnimeList.length}</strong> anime</span>
-                        <span><strong style={{ color: 'var(--text-secondary)' }}>{totalEpisodes}</strong> eps watched</span>
-                        <span>avg Score: <strong style={{ color: '#fbbf24' }}>{avgScore}</strong></span>
+                        <span><strong style={{ color: 'var(--text-secondary)' }}>{filteredAnimeList.length}</strong> {t.list.animeCount}</span>
+                        <span><strong style={{ color: 'var(--text-secondary)' }}>{totalEpisodes}</strong> {t.list.epsWatched}</span>
+                        <span>{t.list.avgScore} <strong style={{ color: '#fbbf24' }}>{avgScore}</strong></span>
                     </motion.div>
                 )}
             </motion.div>
@@ -408,7 +409,7 @@ export default function MyListPage({ onSelectAnime }: MyListPageProps) {
                 >
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
                         <Filter size={14} style={{ color: 'var(--text-muted)' }} />
-                        <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 500 }}>Genre:</span>
+                        <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 500 }}>{t.list.genre}</span>
                         {activeGenre && (
                             <motion.button
                                 initial={{ scale: 0.8, opacity: 0 }}
@@ -494,9 +495,9 @@ export default function MyListPage({ onSelectAnime }: MyListPageProps) {
                             borderBottom: '1px solid rgba(255,255,255,0.06)',
                         }}>
                             <span style={{ width: '76px' }}></span>
-                            <span style={{ flex: 1 }}>Anime</span>
-                            <span style={{ width: '70px', textAlign: 'center' }}>Episodes</span>
-                            <span style={{ width: '80px', textAlign: 'right' }}>Score</span>
+                            <span style={{ flex: 1 }}>{t.list.anime}</span>
+                            <span style={{ width: '70px', textAlign: 'center' }}>{t.list.episodesCol}</span>
+                            <span style={{ width: '80px', textAlign: 'right' }}>{t.list.scoreCol}</span>
                         </div>
 
                         {filteredAnimeList.map((anime, i) => (

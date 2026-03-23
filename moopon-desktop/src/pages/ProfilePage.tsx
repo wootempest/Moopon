@@ -131,7 +131,7 @@ export default function ProfilePage({ onLogout }: ProfilePageProps) {
                                 {user.name}
                             </h1>
                             <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
-                                MyAnimeList
+                                {t.profile.myAnimeList}
                             </p>
                         </div>
                         <motion.div

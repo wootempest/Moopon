@@ -11,14 +11,14 @@ interface TopPageProps {
 }
 
 const RANKING_TYPES = [
-    { value: 'all', label: 'All' },
-    { value: 'airing', label: 'Airing' },
-    { value: 'upcoming', label: 'Upcoming' },
-    { value: 'tv', label: 'TV' },
-    { value: 'movie', label: 'Movie' },
-    { value: 'bypopularity', label: 'Popular' },
-    { value: 'favorite', label: 'Favorite' },
-];
+    { value: 'all', labelKey: 'all' },
+    { value: 'airing', labelKey: 'airing' },
+    { value: 'upcoming', labelKey: 'upcoming' },
+    { value: 'tv', labelKey: 'tv' },
+    { value: 'movie', labelKey: 'movie' },
+    { value: 'bypopularity', labelKey: 'popular' },
+    { value: 'favorite', labelKey: 'favorite' },
+] as const;
 
 export default function TopPage({ onSelectAnime }: TopPageProps) {
     const [rankingType, setRankingType] = useState('all');
@@ -67,7 +67,7 @@ export default function TopPage({ onSelectAnime }: TopPageProps) {
                         whileHover={{ scale: 1.04 }}
                         whileTap={{ scale: 0.96 }}
                     >
-                        {type.label}
+                        {t.ranking[type.labelKey]}
                     </motion.button>
                 ))}
             </motion.div>

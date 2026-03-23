@@ -25,6 +25,7 @@ function BrowseRow({ children }: { children: ReactNode }) {
     const rowRef = useRef<HTMLDivElement>(null);
     const [isFocused, setIsFocused] = useState(false);
     const [focusedIndex, setFocusedIndex] = useState(-1);
+    const { t } = useI18n();
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -113,10 +114,10 @@ function BrowseRow({ children }: { children: ReactNode }) {
                     }}
                 >
                     <span style={{ fontSize: 10, color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: 4 }}>
-                        <ChevronLeft size={12} /> <ChevronRight size={12} /> navigate
+                        <ChevronLeft size={12} /> <ChevronRight size={12} /> {t.home.navigate}
                     </span>
                     <span style={{ fontSize: 10, color: 'var(--purple-400)', display: 'flex', alignItems: 'center', gap: 4 }}>
-                        Enter select
+                        {t.home.enterSelect}
                     </span>
                 </motion.div>
             )}

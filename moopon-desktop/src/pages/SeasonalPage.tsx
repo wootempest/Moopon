@@ -12,12 +12,6 @@ interface SeasonalPageProps {
 }
 
 const SEASONS = ['winter', 'spring', 'summer', 'fall'];
-const SEASON_LABELS: Record<string, string> = {
-    winter: 'Winter',
-    spring: 'Spring',
-    summer: 'Summer',
-    fall: 'Fall',
-};
 
 function getCurrentSeason() {
     const month = new Date().getMonth();
@@ -84,7 +78,7 @@ export default function SeasonalPage({ onSelectAnime }: SeasonalPageProps) {
                         whileHover={{ scale: 1.04 }}
                         whileTap={{ scale: 0.96 }}
                     >
-                        {SEASON_LABELS[s]}
+                        {t.seasons[s as keyof typeof t.seasons]}
                     </motion.button>
                 ))}
                 <div style={{ width: 1, background: 'var(--border-subtle)', margin: '0 4px' }} />
@@ -144,8 +138,8 @@ export default function SeasonalPage({ onSelectAnime }: SeasonalPageProps) {
                         >
                             <Calendar />
                         </motion.div>
-                        <h3>No anime found</h3>
-                        <p>No data available for this season</p>
+                        <h3>{t.empty.noAnimeFound}</h3>
+                        <p>{t.empty.noDataAvailable}</p>
                     </motion.div>
                 )}
             </AnimatePresence>

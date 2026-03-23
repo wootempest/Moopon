@@ -1,11 +1,13 @@
 import { Minus, Square, X } from 'lucide-react';
+import { useI18n } from '../i18n';
 
 export default function TitleBar() {
+    const { t } = useI18n();
     return (
         <div className="titlebar">
             <div className="titlebar-title">
                 <span className="logo-dot"></span>
-                Moopon
+                {t.common.appName}
             </div>
             <div className="titlebar-controls">
                 <button className="titlebar-btn" onClick={() => window.electronAPI?.minimize()}>

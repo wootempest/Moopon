@@ -100,7 +100,7 @@ export default function SearchPage({ onSelectAnime }: SearchPageProps) {
                     >
                         <Search />
                         <h3>{t.search.noResults}</h3>
-                        <p>Try a different search term</p>
+                        <p>{t.empty.tryDifferentSearch}</p>
                     </motion.div>
                 )}
 
@@ -119,7 +119,7 @@ export default function SearchPage({ onSelectAnime }: SearchPageProps) {
                             <Search />
                         </motion.div>
                         <h3>{t.nav.search}</h3>
-                        <p>Use the search bar above</p>
+                        <p>{t.empty.useSearchBar}</p>
                     </motion.div>
                 )}
             </AnimatePresence>
